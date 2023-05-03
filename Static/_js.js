@@ -55,11 +55,6 @@ function updateTextInput3(val) {
 
 
 
-
-
-
-
-
 const DATA_COUNT = 101;
 const labels = [];
 for (let i = 0; i <DATA_COUNT; i++) {
@@ -157,25 +152,8 @@ var mychart = new Chart(
     );
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 //time-temp graph
 function plot_graph(_arr){
-
-//arr_str = _arr;
-//arr_str = arr_str.slice(1,arr_str.length-2);
-//arr = arr_str.split(",");
-//arr = arr.map((item) => {return Number(item)});
 
 const DATA_COUNT = 101;
 const labels = [];
@@ -286,8 +264,8 @@ var mychart = new Chart(
     var t="";
     var temp_val=Number(temp)
     var t_val=Number(t);
-    var k = 2.61*(10**9)*Math.exp((-5819.7)/temp_val);
-    var q_val = 100 - k*(t_val/(40*24));
+    var k = "";
+    var q_val = "";
     if(isNaN(q_val)){ var q=100; }
     else var q=q_val.toFixed(2);
       

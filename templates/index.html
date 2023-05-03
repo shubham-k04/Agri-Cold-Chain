@@ -123,25 +123,6 @@
         <div class="_sensor" id="z">z-value</div>
         <input class="sensor_in" id="z1" name="z_val" type="value" placeholder="Enter Value" value="-0.06"> 
       </div>
-      
-      <!--Time input
-      <div class="sensor1" id="time" > 
-
-      <div class="sensor_" id="t1">Time</div>
-
-      
-      <input class="sensor_inp" name="day" type="value" placeholder="Enter Value" value="1" id="_day"> 
-      <div class="sensor_" id="t2">Days</div>
-       
-      
-      <input class="sensor_inp" name="hour" type="value" placeholder="Enter Value" value="10" id="_hour"> 
-      <div class="sensor_" id="t3">Hours</div>
-      
-      
-      <input class="sensor_inp" name="second" type="value" placeholder="Enter Value" value="100" id="_second">
-      <div class="sensor_">Seconds</div>
-
-      </div> Time input (end)-->
 
      </form>
 
@@ -230,6 +211,8 @@
           </div>
           
           <form method="post" id="_qForm">
+            
+            <!--Time input -->
           <div class="sensor1" id="time" > 
 
             <div class="sensor_" id="t1">Time</div>
@@ -309,7 +292,7 @@
       <div id="q-text">
 
         <form method="post" id="qForm">
-
+       
        <div class="button">
         <div class="_sensor" id="z">z-value</div>
         <input class="sensor_in" id="z3" name="z_value" type="value" placeholder="Enter Value" value="-0.06"> 
@@ -341,26 +324,8 @@
 <script src="{{ url_for('static', filename='_js.js') }}"></script>
 
 
-  
 
 
 </body>
 </html>
 
-<!--temp=[]
-    for i in _x:
-        for j in _y:
-            brr=scaler.transform(np.array([[s1,s2,3000,i,j,z]]))
-            temp_val=round(float(rel_model.predict(brr)),3)
-            k = 2.61*(10**9)*math.exp((-5819.7)/temp_val)
-            q_val = 100 - k*(300/(40*24))
-            temp.append(round(q_val,0))
-    '''arr=[]
-    for i in _x:
-           ar=[]
-           for j in _y:
-                  ar.append(round(np.random.uniform(0,100),2))
-           arr.append(ar)'''
-  
-    #return jsonify({'arr':arr})
-    return jsonify({'arr':temp})-->
