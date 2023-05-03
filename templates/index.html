@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agri-Cold Chain</title>
+
+  <!--linking css file-->
+  <link rel="stylesheet" href="{{ url_for('static', filename='_css.css') }}" />
+
+  <!--fonts used-->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Buenard&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script type="text/javascript">
+  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+</head>
+<body onload="update_values()" onload="update_page()" onload="update_page()">
+
+  <!--container (Everything inside this)-->
+  <div class="container" id="_container">
+    
+
+    <!--sidebar-->
+    <div id="sidebar">
+    
+      <ul>
+        <li class="_li"><a href="#_container" onclick="togglemenu()">Temperature Prediction</a></li>
+        <li class="_li"><a href="#section2" onclick="togglemenu()">Time Graph</a></li>
+        <li class="_li"><a href="#section3" onclick="togglemenu()">Color Map</a></li>
+        <li class="_li"><a href="#section4" onclick="togglemenu()">Quality Map</a></li>
+        <li><a href="#section2" onclick="togglemenu()">Quality</a></li>
+      </ul>
+
+     </div>
+    <!--sidebar (end)-->
+    
+
+    <!--Navigation bar-->
+    <nav id="navbar">
+        
+        <!--Toggle button-->
+        <div class="toggle-btn" onclick="togglemenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <!--Toggle button (end)-->
+
+        <!--Agri cold chain-->
+        <div id="Agri_cold">
+          <p id="cold">Agri-Cold Chain</p>
+        </div>
+
+        <!--Nav bar links-->
+        <ul>
+            <li class="item"><a href="#_container">Home</a></li>
+            <li class="item"><a href="#services-container">Description</a></li>
+            <li class="item"><a href="#client-section">About Us</a></li>
+            <li class="item" id="contact"><a href="#contact">Contact Us</a></li>
+        </ul>
+
+    </nav>
+    <!--Navigation bar (end)-->
+
+
+    <!--Heading-->
+    <header id="head_">
+       <h1>Temperature and Quality Prediction During Cold Chain Export</h1>
+       <p>
+        Mangoes are stacked in a container and 2 sensors are fixed at 2 distinct points inside the container.
+        The temperature inside the container should be maintained throughout the journey to preserve quality 
+        and freshness of the product.
+       </p>
+   </header>
+    <!--Heading (end)-->
+
+
+
+   <!--section1 = box(heading ,box12(box1,box2))-->
+   <section id="section1">
+
+    <div class="box"> 
+         <h3> Temperature Prediction</h3> <!--heading-->
+
+    <div class="box12"> <!--contans box1 and box2-->
+
+    <!-- box1 -->
+    <div id="box1"> <!--Taking input-->
+      <form method="post" id="myForm">
+    
+      <!--sensor1-->
+      <div class="sensor">
+        <div class="_sensor" id="s1">Sensor-1</div>
+        <input class="sensor_in" name="sensor1" type="value" placeholder="Enter Value" value="285.695" id="_s1">
+      </div>
+      
+      <!--sensor2-->
+      <div class="sensor">
+        <div class="_sensor" id="s2">Sensor-2</div>
+        <input class="sensor_in" name="sensor2" type="value" placeholder="Enter Value" value="306.202" id="_s2">
+      </div>
+      
+      <!--x-value-->
+      <div class="sensor">
+        <div class="_sensor" id="x">x-value</div>
+        <input class="sensor_in" id="x1" name="x_val" type="value" placeholder="Enter Value" value="0.18"> 
+      </div>
+      
+      <!--y-value-->
+      <div class="sensor">
+        <div class="_sensor" id="y">y-value</div>
+        <input class="sensor_in" id="y1" name="y_val" type="value" placeholder="Enter Value" value="-2.09"> 
+      </div>
+      
+      <!--z-value-->
+      <div class="sensor">
+        <div class="_sensor" id="z">z-value</div>
+        <input class="sensor_in" id="z1" name="z_val" type="value" placeholder="Enter Value" value="-0.06"> 
+      </div>
+      
+      <!--Time input
+      <div class="sensor1" id="time" > 
+
+      <div class="sensor_" id="t1">Time</div>
+
+      
+      <input class="sensor_inp" name="day" type="value" placeholder="Enter Value" value="1" id="_day"> 
+      <div class="sensor_" id="t2">Days</div>
+       
+      
+      <input class="sensor_inp" name="hour" type="value" placeholder="Enter Value" value="10" id="_hour"> 
+      <div class="sensor_" id="t3">Hours</div>
+      
+      
+      <input class="sensor_inp" name="second" type="value" placeholder="Enter Value" value="100" id="_second">
+      <div class="sensor_">Seconds</div>
+
+      </div> Time input (end)-->
+
+     </form>
+
+    </div>  <!--box1 (end)-->
+
+
+    <!-- box2 -->
+    <div id="box2"> <!--predicted value and range slider-->
+
+     <div class="pred-temp">
+      <div class="temp">Predicted Temperature: <span class="temp" id="pval"> </span> </div>  
+     </div>
+    
+    <!-- slider x-value -->
+    <div class="sub-box2">
+      <div class="slider-text">x-value : </div>
+      <div class="slider_">
+        <input type="range" min="-202" max="26" value="0" steps="1" class="range_slider" id="slider"  onchange="updateTextInput(this.value);">
+        <label for="" class="label-left">-2.02</label>
+        <label for="" id="label-right">0.26</label>
+      </div>
+    </div>
+    
+    <!-- slider y-value -->
+    <div class="sub-box2">
+      <div class="slider-text">y-value : </div>
+      <div class="slider_">
+        <input type="range" min="-468" max="77" value="0" steps="1" class="range_slider" id="slider2"  onchange="updateTextInput2(this.value);">
+        <label for="" class="label-left">-4.68</label>
+        <label for="" id="label-right2">0.77</label>
+      </div>
+    </div>
+    
+    <!-- slider z-value -->
+    <div class="sub-box2" id="sub-box2_3">
+      <div class="slider-text">z-value : </div>
+      <div class="slider_">
+        <input type="range" min="-20" max="207" value="100" steps="1" class="range_slider" id="slider3"  onchange="updateTextInput3(this.value);">
+        <label for="" class="label-left">-0.20</label>
+        <label for="" id="label-right3">2.074</label>
+      </div>
+    </div>
+  
+    </div> <!-- box2 (end) -->
+
+    </div> <!-- box12 (end) -->
+
+    <div class="button"> <!--predict button-->
+      <button type="submit" class="predict" id="abcd">Predict</button>
+   </div>
+
+    </div> <!-- box (end) -->
+
+  </section> <!-- section1 (end) -->
+
+
+
+
+  <!-- section2 = (box3(heading,time-temp graph))-->
+  <section id="section2">
+  
+  <div class="box35"> <!--contans box3 and box5-->
+
+    <!-- box3 -->
+    <div id="box3">
+        <h3>Time-Temperature History </h3> <!-- heading -->
+        
+        <!-- time-temp graph-->
+        <div id="graph">
+          <canvas id="myChart"></canvas>
+        </div>
+
+        <div class="button"> 
+          <button type="submit" class="predict" id="abc">Plot</button>
+       </div>
+
+    </div> <!-- box3 (end) -->
+      
+        <!-- box5 -->
+        <div id="box5">
+          <h3>Quality Prediction </h3>  <!-- heading -->
+          <h4>Quality (%) </h4>
+          <!-- quality -->
+          <div id="quality">
+            <canvas id="Chart"></canvas>
+          </div>
+          
+          <form method="post" id="_qForm">
+          <div class="sensor1" id="time" > 
+
+            <div class="sensor_" id="t1">Time</div>
+      
+            <input class="sensor_inp" name="day" type="value" placeholder="Enter Value" value="1" id="_day"> 
+            <div class="sensor_" id="t2">Days</div>
+             
+            <input class="sensor_inp" name="hour" type="value" placeholder="Enter Value" value="10" id="_hour"> 
+            <div class="sensor_" id="t3">Hours</div>
+            
+            </div> <!--Time input (end)-->
+
+            <div class="button"> 
+              <button type="submit" class="predict" id="ab">Find</button>
+           </div>
+
+           </form>
+       </div> <!-- box5 (end) -->
+
+    </div> <!-- box35 (end) -->
+
+  </section> <!-- section2 (end)-->
+
+
+  <!-- section3 = (box4(heading,color-map))-->
+  <section id="section3"> 
+
+    <!-- box4 -->
+    <div id="box4">
+        <h3>Color Contour for Temperature Distribution </h3> <!-- heading -->
+      
+      <!-- color-map-->
+      <div id="color-m">
+
+      <div id="c-map">
+       <img src="{{ url_for('static', filename='Temp.jpg') }}" alt="Error" id="myImage">
+      </div>
+
+      <div id="c-text">
+
+        <form method="post" id="cForm">
+
+       <div class="button">
+        <div class="_sensor" id="z">z-value</div>
+        <input class="sensor_in" id="z2" name="z_value" type="value" placeholder="Enter Value" value="-0.06"> 
+       </div>
+
+      </form>
+
+       <div class="button"> 
+        <button type="submit" class="predict" id="abcde">Get Map</button>
+       </div>
+
+      </div> <!-- c-text (end) -->
+
+      </div> <!-- color-m (end) -->
+
+   </div> <!-- box4 (end) -->
+
+  </section>  <!-- section3 (end)-->
+
+
+  <!-- section4 = (box6(heading,quality-map))-->
+  <section id="section4"> 
+
+    <!-- box4 -->
+    <div id="box6">
+        <h3>Quality Map </h3> <!-- heading -->
+      
+      <!-- quality-map-->
+      <div id="quality-m">
+
+      <div id="q-map">
+        <canvas id="qChart"></canvas>
+      </div>
+
+      <div id="q-text">
+
+        <form method="post" id="qForm">
+
+       <div class="button">
+        <div class="_sensor" id="z">z-value</div>
+        <input class="sensor_in" id="z3" name="z_value" type="value" placeholder="Enter Value" value="-0.06"> 
+       </div>
+
+      </form>
+
+       <div class="button"> 
+        <button type="submit" class="predict" id="abcdef">Get Map</button>
+       </div>
+
+      </div> <!-- q-text (end) -->
+
+      </div> <!-- quality-m (end) -->
+
+   </div> <!-- box6 (end) -->
+
+  </section>  <!-- section4 (end)-->
+
+
+
+ </div> <!-- container (end) -->
+
+
+ <!-- chart.js for time-temp graph-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- linking javascript file -->
+<script src="{{ url_for('static', filename='_js.js') }}"></script>
+
+
+  
+
+
+</body>
+</html>
+
+<!--temp=[]
+    for i in _x:
+        for j in _y:
+            brr=scaler.transform(np.array([[s1,s2,3000,i,j,z]]))
+            temp_val=round(float(rel_model.predict(brr)),3)
+            k = 2.61*(10**9)*math.exp((-5819.7)/temp_val)
+            q_val = 100 - k*(300/(40*24))
+            temp.append(round(q_val,0))
+    '''arr=[]
+    for i in _x:
+           ar=[]
+           for j in _y:
+                  ar.append(round(np.random.uniform(0,100),2))
+           arr.append(ar)'''
+  
+    #return jsonify({'arr':arr})
+    return jsonify({'arr':temp})-->
