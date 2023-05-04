@@ -110,7 +110,7 @@ scales: {
     },
     grid: {
         display: true,
-        tickColor: 'white'
+         tickColor: 'white'
       },
         ticks: {
           color: 'white'
@@ -159,7 +159,7 @@ const DATA_COUNT = 101;
 const labels = [];
 for (let i = 0; i <DATA_COUNT; i++) {
   var j=100*i;
-labels.push(j.toString());
+  labels.push(j.toString());
 }
 const datapoints = _arr;
 const data = {
@@ -180,9 +180,7 @@ datasets: [
   fill: false,
   tension: 0.4,
   pointRadius:0
-},
-]
-};
+},]};
 
 const config = {
 type: 'line',
@@ -200,7 +198,6 @@ interaction: {
   intersect: false,
 },
 scales: {
-
   x: {
     display: true,
     title: {
@@ -217,9 +214,7 @@ scales: {
         },
         border: {
           color: 'white'
-        }
-    
-  },
+        } },
   y: {
     display: true,
     title: {
@@ -234,21 +229,15 @@ scales: {
       },
       ticks: {
           color: 'white',
-         
         },
         border: {
           color: 'white'
         },
-    
-  }
-}
-},
-};
+  }}},};
 
 var mychart = new Chart(
     document.getElementById('myChart'),
     config
-    
     );
   return mychart;
 }
@@ -257,18 +246,7 @@ var mychart = new Chart(
 
 
 
-
-
-
-    var temp="";
-    var t="";
-    var temp_val=Number(temp)
-    var t_val=Number(t);
-    var k = "";
-    var q_val = "";
-    if(isNaN(q_val)){ var q=100; }
-    else var q=q_val.toFixed(2);
-      
+    var q=100;
     const ctx=document.getElementById('myChart').getContext('2d');
     const gradseg = ctx.createLinearGradient(0,0,450,0);
     gradseg.addColorStop(0,'red');
@@ -359,10 +337,8 @@ var mychart = new Chart(
 
 
 
-
+// quality prediction function
 function gauge_chart(a,b){
-
-// quality
 
   var temp=a;
   var t=b;
@@ -459,7 +435,7 @@ function gauge_chart(a,b){
 }
     
   
-var intervalid=setInterval(update_values,30000);
+var intervalid=setInterval(update_values,1000);
     function update_values(){
       $.getJSON($SCRIPT_ROOT+'/stuff',
       function(data){
@@ -669,7 +645,7 @@ var qchart = new Chart(
 
 
 
-
+//Quality-map function 
 function quality(arr){
 
 y=[-4.65, -4.02, -3.45, -2.85, -2.25, -1.65, -1.05, -0.45, 0.15, 0.75];
@@ -689,18 +665,14 @@ datasets: [
 ]
 };
 
-
-
 const config2 = {
 type: 'line',
 data: data2,
 options: {
 responsive: true,
-
 interaction: {
   intersect: false,
 },
-
 scales: {
   x: {
     display: true,
@@ -719,7 +691,6 @@ scales: {
         border: {
           color: 'white'
         }
-    
   },
   y: {
     display: true,
@@ -729,7 +700,6 @@ scales: {
       color:'white'
     },
     grid: {
-   
         display: true,
         tickColor: 'white'
       },
@@ -739,7 +709,6 @@ scales: {
         border: {
           color: 'white'
         },
-    
   }
 },
 plugins:{
@@ -752,9 +721,7 @@ title: {
   color: 'white',
 },
 
-
   tooltip:{
-
     displayColors: false,
     callbacks:{
       title:function(){
@@ -762,19 +729,13 @@ title: {
       },
       
      label:((tooltipItem)=>{
-      // console.log(tooltipItem);
-       
        for(let i=0;i<10;i++){
         for(let j=0;j<10;j++){
           if(tooltipItem.parsed.x==i+1 && tooltipItem.parsed.y==y[j]){ return `${arr[i][j]}%`; }
          } }
      })
     }
-  },
-},
-},
-
-};
+  },},},};
 
 var qchart = new Chart(
     document.getElementById('qChart'),
@@ -783,6 +744,8 @@ var qchart = new Chart(
 
     return qchart
 }
+
+
   const qForm = document.getElementById("qForm");
     $('#abcdef').on('click',function(e){
      e.preventDefault();
@@ -799,9 +762,6 @@ var qchart = new Chart(
         {
           qchart.destroy();
          qchart=quality(data.arr);
-         console.log(data.arr)
-         console.log(typeof(data.arr[0]))
         }
-       
      })
    });
